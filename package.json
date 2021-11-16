@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon index.js"
+    "dev": "nodemon index.js",
+    "startdev": "MONGODB_URI=http://localhost:3003 nodemon index.js"
   },
   "author": "Lukas Vidfar",
   "license": "ISC",
