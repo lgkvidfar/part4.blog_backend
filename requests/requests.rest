@@ -1,0 +1,17 @@
+POST http://localhost:3003/api/blogs
+Content-Type: application/json
+
+{
+    "title": "How To JS",
+    "author": "BigBags",
+    "url": "bigbags.com",
+    "likes": 99
+}
+
+###
+
+GET http://localhost:3003/api/blogs
+
+###
+
+GET http://localhost:303/api/blogs/61938d8c11adee4486507378
