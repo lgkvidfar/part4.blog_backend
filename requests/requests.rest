@@ -2,10 +2,10 @@ POST http://localhost:3003/blogs
 Content-Type: application/json
 
 {
-    "title": "How  JS",
-    "author": "BiBags",
-    "url": "bigags.com",
-    "likes": 99
+    "title": "lukas",
+    "author": "lukas",
+    "url": "lukas.com",
+    "likes": 69
 }
 
 ###
