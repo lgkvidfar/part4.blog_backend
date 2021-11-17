@@ -20,7 +20,6 @@ test('there are two blogs', async () => {
   test('the third blog is written by BigBags', async () => {
     const response = await api.get('/blogs')
     console.log(response)
-
   
     expect(response.body).toBe('BigBags')
   })
