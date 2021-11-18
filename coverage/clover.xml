@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1637237878926" clover="3.2.0">
-  <project timestamp="1637237878926" name="All files">
-    <metrics statements="101" coveredstatements="75" conditionals="12" coveredconditionals="3" methods="23" coveredmethods="11" elements="136" coveredelements="89" complexity="0" loc="101" ncloc="101" packages="5" files="8" classes="8"/>
+<coverage generated="1637243316738" clover="3.2.0">
+  <project timestamp="1637243316738" name="All files">
+    <metrics statements="106" coveredstatements="81" conditionals="12" coveredconditionals="3" methods="18" coveredmethods="12" elements="136" coveredelements="96" complexity="0" loc="106" ncloc="106" packages="5" files="8" classes="8"/>
     <package name="backend">
-      <metrics statements="21" coveredstatements="20" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="1"/>
+      <metrics statements="24" coveredstatements="23" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
       <file name="app.js" path="C:\Users\Lgkvi\Desktop\fs2021\blog\backend\app.js">
-        <metrics statements="21" coveredstatements="20" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="1"/>
+        <metrics statements="24" coveredstatements="23" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
@@ -17,27 +17,30 @@
         <line num="9" count="1" type="stmt"/>
         <line num="11" count="1" type="stmt"/>
         <line num="13" count="1" type="stmt"/>
+        <line num="14" count="1" type="stmt"/>
         <line num="15" count="1" type="stmt"/>
-        <line num="18" count="0" type="stmt"/>
-        <line num="21" count="1" type="stmt"/>
-        <line num="22" count="1" type="stmt"/>
-        <line num="23" count="1" type="stmt"/>
+        <line num="19" count="1" type="stmt"/>
+        <line num="21" count="0" type="stmt"/>
         <line num="24" count="1" type="stmt"/>
         <line num="26" count="1" type="stmt"/>
+        <line num="27" count="1" type="stmt"/>
+        <line num="28" count="1" type="stmt"/>
         <line num="29" count="1" type="stmt"/>
-        <line num="30" count="1" type="stmt"/>
+        <line num="31" count="1" type="stmt"/>
+        <line num="34" count="1" type="stmt"/>
         <line num="35" count="1" type="stmt"/>
+        <line num="40" count="1" type="stmt"/>
       </file>
     </package>
     <package name="backend.controllers">
-      <metrics statements="28" coveredstatements="16" conditionals="0" coveredconditionals="0" methods="10" coveredmethods="3"/>
+      <metrics statements="30" coveredstatements="19" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="4"/>
       <file name="blogs.js" path="C:\Users\Lgkvi\Desktop\fs2021\blog\backend\controllers\blogs.js">
-        <metrics statements="28" coveredstatements="16" conditionals="0" coveredconditionals="0" methods="10" coveredmethods="3"/>
+        <metrics statements="30" coveredstatements="19" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="4"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="4" count="1" type="stmt"/>
-        <line num="5" count="4" type="stmt"/>
-        <line num="6" count="8" type="stmt"/>
+        <line num="5" count="5" type="stmt"/>
+        <line num="6" count="10" type="stmt"/>
         <line num="10" count="1" type="stmt"/>
         <line num="11" count="2" type="stmt"/>
         <line num="13" count="2" type="stmt"/>
@@ -54,13 +57,15 @@
         <line num="38" count="0" type="stmt"/>
         <line num="40" count="0" type="stmt"/>
         <line num="47" count="0" type="stmt"/>
+        <line num="48" count="0" type="stmt"/>
         <line num="49" count="0" type="stmt"/>
         <line num="51" count="0" type="stmt"/>
-        <line num="54" count="1" type="stmt"/>
-        <line num="55" count="0" type="stmt"/>
-        <line num="57" count="0" type="stmt"/>
-        <line num="59" count="0" type="stmt"/>
-        <line num="63" count="1" type="stmt"/>
+        <line num="55" count="1" type="stmt"/>
+        <line num="56" count="1" type="stmt"/>
+        <line num="57" count="1" type="stmt"/>
+        <line num="58" count="1" type="stmt"/>
+        <line num="60" count="0" type="stmt"/>
+        <line num="65" count="1" type="stmt"/>
       </file>
     </package>
     <package name="backend.models">
@@ -70,9 +75,9 @@
         <line num="1" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
         <line num="16" count="1" type="stmt"/>
-        <line num="18" count="14" type="stmt"/>
-        <line num="19" count="14" type="stmt"/>
-        <line num="20" count="14" type="stmt"/>
+        <line num="18" count="19" type="stmt"/>
+        <line num="19" count="19" type="stmt"/>
+        <line num="20" count="19" type="stmt"/>
         <line num="24" count="1" type="stmt"/>
       </file>
     </package>
@@ -88,8 +93,8 @@
         <line num="19" count="0" type="stmt"/>
         <line num="21" count="0" type="stmt"/>
         <line num="24" count="1" type="stmt"/>
-        <line num="25" count="2" type="stmt"/>
-        <line num="26" count="5" type="stmt"/>
+        <line num="25" count="4" type="stmt"/>
+        <line num="26" count="8" type="stmt"/>
         <line num="29" count="1" type="stmt"/>
       </file>
     </package>
@@ -115,7 +120,7 @@
       <file name="logger.js" path="C:\Users\Lgkvi\Desktop\fs2021\blog\backend\utils\logger.js">
         <metrics statements="6" coveredstatements="4" conditionals="2" coveredconditionals="1" methods="2" coveredmethods="1"/>
         <line num="2" count="1" type="stmt"/>
-        <line num="3" count="50" type="cond" truecount="1" falsecount="1"/>
+        <line num="3" count="66" type="cond" truecount="1" falsecount="1"/>
         <line num="4" count="0" type="stmt"/>
         <line num="8" count="1" type="stmt"/>
         <line num="9" count="0" type="stmt"/>
@@ -125,11 +130,11 @@
         <metrics statements="17" coveredstatements="10" conditionals="6" coveredconditionals="0" methods="3" coveredmethods="1"/>
         <line num="2" count="1" type="stmt"/>
         <line num="4" count="1" type="stmt"/>
-        <line num="5" count="12" type="stmt"/>
-        <line num="6" count="12" type="stmt"/>
-        <line num="7" count="12" type="stmt"/>
-        <line num="8" count="12" type="stmt"/>
-        <line num="9" count="12" type="stmt"/>
+        <line num="5" count="16" type="stmt"/>
+        <line num="6" count="16" type="stmt"/>
+        <line num="7" count="16" type="stmt"/>
+        <line num="8" count="16" type="stmt"/>
+        <line num="9" count="16" type="stmt"/>
         <line num="12" count="1" type="stmt"/>
         <line num="13" count="0" type="stmt"/>
         <line num="16" count="1" type="stmt"/>

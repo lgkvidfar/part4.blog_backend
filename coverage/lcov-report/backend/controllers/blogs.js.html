@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">58.62% </span>
+                <span class="strong">64.51% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>17/29</span>
+                <span class='fraction'>20/31</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">30% </span>
+                <span class="strong">66.66% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>3/10</span>
+                <span class='fraction'>4/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">57.14% </span>
+                <span class="strong">63.33% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>16/28</span>
+                <span class='fraction'>19/30</span>
             </div>
         
             
@@ -119,12 +119,14 @@
 <a name='L60'></a><a href='#L60'>60</a>
 <a name='L61'></a><a href='#L61'>61</a>
 <a name='L62'></a><a href='#L62'>62</a>
-<a name='L63'></a><a href='#L63'>63</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L63'></a><a href='#L63'>63</a>
+<a name='L64'></a><a href='#L64'>64</a>
+<a name='L65'></a><a href='#L65'>65</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -166,18 +168,20 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -227,19 +231,21 @@ blogsRouter.put('/:id', <span class="fstat-no" title="function not covered" >as<
     likes: body.likes
   }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  await Blog.findByIdAndUpdate(request.params.id, blog, { new: true })</span>
-    .then(<span class="fstat-no" title="function not covered" >up</span>datedBlog =&gt; {
-<span class="cstat-no" title="statement not covered" >      response.json(updatedBlog.toJSON())</span>
-    })
-    .catch(<span class="fstat-no" title="function not covered" >er</span>ror =&gt; <span class="cstat-no" title="statement not covered" >next(error))</span>
+<span class="cstat-no" title="statement not covered" >  try {</span>
+    const updated = <span class="cstat-no" title="statement not covered" >await Blog.findByIdAndUpdate(request.params.id, blog, { new: true })</span>
+<span class="cstat-no" title="statement not covered" >    response.json(updated.toJSON())</span>
+  } catch(error){
+<span class="cstat-no" title="statement not covered" >    response.status(400).send({error: "something went wrong with the update"}).end()</span>
+  }
 })
 &nbsp;
-blogsRouter.delete('/:id', <span class="fstat-no" title="function not covered" >as</span>ync (request, response, next) =&gt; {
-<span class="cstat-no" title="statement not covered" >  await Blog.findByIdAndRemove(request.params.id)</span>
-    .then(<span class="fstat-no" title="function not covered" >()</span> =&gt; {
-<span class="cstat-no" title="statement not covered" >      response.status(204).end()</span>
-    })
-    .catch(<span class="fstat-no" title="function not covered" >er</span>ror =&gt; <span class="cstat-no" title="statement not covered" >next(error))</span>
+blogsRouter.delete('/:id', async (request, response, next) =&gt; {
+  try {
+      const removed = await Blog.findByIdAndRemove(request.params.id)
+      response.status(204).json(`${removed.title} was removed`).end()
+  } catch(error) {
+<span class="cstat-no" title="statement not covered" >     response.status(400).send({error: "something went wrong with the remove"}).end()</span>
+  }
 })
 &nbsp;
 &nbsp;
@@ -250,7 +256,7 @@ module.exports = blogsRouter</pre></td></tr></table></pre>
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Thu Nov 18 2021 13:17:58 GMT+0100 (Central European Standard Time)
+                at Thu Nov 18 2021 14:48:36 GMT+0100 (Central European Standard Time)
             </div>
         </div>
         <script src="../../prettify.js"></script>

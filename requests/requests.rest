@@ -3,12 +3,22 @@ POST http://localhost:3003/blogs
 Content-Type: application/json
 
 {
-    "title": "app",
+    "title": "5",
     "author": "json",
     "url": "lukas.com",
     "likes": 69
 }
 
+###
+PUT http://localhost:3003/blogs/619388805560ec1c7f0c52c5
+Content-Type: application/json
+
+{
+    "title": "String2",
+    "author": "String2",
+    "url": "String2",
+    "likes": 1
+}
 ###
 
 GET http://localhost:3003/blogs
@@ -18,4 +28,4 @@ GET http://localhost:3003/blogs
 GET http://localhost:3003/blogs/6193886d5560ec1c7f0c52c2
 
 ###
-DELETE http://localhost:3003/blogs/61939bcf5fdcc63adca29a35
+DELETE http://localhost:3003/blogs/61964dc2b20fa690878b557d

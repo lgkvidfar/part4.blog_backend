@@ -10,13 +10,18 @@ const mongoose = require('mongoose')
 
 logger.info('connecting to', config.MONGODB_URI)
 
-mongoose.connect(config.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => {
+const connectDB = async () => {
+ try {
+   await mongoose.connect(config.MONGODB_URI, 
+     { useNewUrlParser: true, 
+      useUnifiedTopology: true 
+    })
     logger.info('connected to MongoDB')
-  })
-  .catch((error) => {
-    logger.error('error connecting to MongoDB:', error.message)
-  })
+ } catch(error) {
+  logger.error('error connecting to MongoDB:', error.message)
+ }
+}
+connectDB()
 
 app.use(cors())
 app.use(express.static('build'))

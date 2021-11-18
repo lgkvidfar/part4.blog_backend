@@ -16,34 +16,47 @@ beforeEach(async () => {
   }
 })
 
-test('blogs are returned as json', async () => {
-  await api
-    .get('/blogs')
-    .expect(200)
-    .expect('Content-Type', /application\/json/)
-})
+describe("when there are two initial blogs in helper", () => {
 
-test('there are two blogs', async () => {
+  test('all blogs are returned', async () => {
+    const response = await api.get('/blogs')
+  
+    expect(response.body).toHaveLength(helper.initialBlogs.length)
+  })
+
+  test('blogs are returned as json', async () => {
+    await api
+      .get('/blogs')
+      .expect(200)
+      .expect('Content-Type', /application\/json/)
+  })
+
+  test('there are two blogs', async () => {
     const response = await api.get('/blogs')
   
     expect(response.body).toHaveLength(helper.initialBlogs.length)
 })
 
-test('all blogs are returned', async () => {
+test('the second blog is written by "some bigger dude"', async () => {
   const response = await api.get('/blogs')
 
-  expect(response.body).toHaveLength(helper.initialBlogs.length)
+  const authors = response.body.map(r => r.author)
+  expect(authors).toContain(
+  'some bigger dude'
+)
 })
-  
-test('the second blog is written by "some bigger dude"', async () => {
-    const response = await api.get('/blogs')
-    console.log(response.body)
-  
-    const authors = response.body.map(r => r.author)
-    expect(authors).toContain(
-    'some bigger dude'
-  )
+
+test('there is an id for each blog', async () => {
+  const response = await api.get('/blogs')
+
+    for(let each of response.body) {
+    expect(each.id).toBeDefined()
+    }
   })
+
+})
+
+describe("adding blogs is done correctly", () => {
 
 test('a valid blog can be added', async () => {
     const newBlog = {
@@ -81,6 +94,8 @@ test('blog without author is not added', async () => {
   
     expect(blogsAtEnd).toHaveLength(helper.initialBlogs.length)
   })
+
+})
 
 describe('find author with most published blogs', () => {
     const blogs = [
@@ -131,6 +146,27 @@ describe('find author with most published blogs', () => {
 })
 })
 
-  afterAll(() => {
+describe('deletion of a blog', () => {
+  test('succeeds with status code 204 if id is valid', async () => {
+    const blogsAtStart = await helper.blogsInDb()
+    const blogToDelete = blogsAtStart[0]
+
+    await api
+      .delete(`/blogs/${blogToDelete.id}`)
+      .expect(204)
+
+    const blogsAtEnd = await helper.blogsInDb()
+
+    expect(blogsAtEnd).toHaveLength(
+      helper.initialBlogs.length - 1
+    )
+
+    const titles = blogsAtEnd.map(r => r.title)
+
+    expect(titles).not.toContain(blogToDelete.title)
+  })
+})
+
+afterAll(() => {
     mongoose.connection.close()
   })

@@ -44,19 +44,21 @@ blogsRouter.put('/:id', async (request, response, next) => {
     likes: body.likes
   }
 
-  await Blog.findByIdAndUpdate(request.params.id, blog, { new: true })
-    .then(updatedBlog => {
-      response.json(updatedBlog.toJSON())
-    })
-    .catch(error => next(error))
+  try {
+    const updated = await Blog.findByIdAndUpdate(request.params.id, blog, { new: true })
+    response.json(updated.toJSON())
+  } catch(error){
+    response.status(400).send({error: "something went wrong with the update"}).end()
+  }
 })
 
 blogsRouter.delete('/:id', async (request, response, next) => {
-  await Blog.findByIdAndRemove(request.params.id)
-    .then(() => {
-      response.status(204).end()
-    })
-    .catch(error => next(error))
+  try {
+      const removed = await Blog.findByIdAndRemove(request.params.id)
+      response.status(204).json(`${removed.title} was removed`).end()
+  } catch(error) {
+     response.status(400).send({error: "something went wrong with the remove"}).end()
+  }
 })
 
 
