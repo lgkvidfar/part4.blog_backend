@@ -6,7 +6,7 @@
   "scripts": {
     "start": "cross-env NODE_ENV=production node index.js",
     "dev": "cross-env NODE_ENV=development nodemon index.js",
-    "test": "NODE_ENV=test jest --verbose --runInBand --coverage"
+    "test": "cross-env NODE_ENV=test jest --verbose --runInBand --coverage"
   },
   "author": "Lukas Vidfar",
   "license": "ISC",
@@ -21,7 +21,8 @@
   },
   "dependencies": {
     "body-parser": "^1.19.0",
-    "dotenv": "^10.0.0"
+    "dotenv": "^10.0.0",
+    "express-async-error": "^0.0.2"
   },
   "jest": {
     "testEnvironment": "node"

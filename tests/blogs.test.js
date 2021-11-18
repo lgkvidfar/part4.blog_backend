@@ -5,40 +5,7 @@ const helper = require('./test_helper')
 const app = require('../app')
 const api = supertest(app)
 const Blog = require('../models/blog')
-
-const initialBlogs = [
-    {
-        title: 'Go To Statemt Considered Harmful',
-        author: 'donald duck',
-        url: 'http://www.u.ona.edu/~rubinson/copyright_violations/Go_To_Considered_Harmful.html',
-        likes: 5,
-        blogs: 33
-      },
-      {
-        title: 'Go To StatemeCondered Harmful',
-        author: 'Edsger',
-        url: 'http://www.u.arizona.edu/~rubinson/copyright_violations/Go_To_Considered_Harmful.html',
-        likes: 2,
-        blogs: 6
-
-      },
-      {
-        title: 'Go To Statement Considered Harmful',
-        author: 'Dijkstra',
-        url: 'http://www.u.arizona.edu/~rubinson/copyright_violations/Go_To_Considered_Harmful.html',
-        "likes": 25,
-        blogs: 1
-
-      },
-      {
-        title: 'Go To Statement Conered Harmful',
-        author: ' W. ',
-        url: 'http://www.u.ari.edu/~rubinson/copyright_vlations/Go_To_Considered_Harmful.html',
-        likes: 22,
-        blogs: 31
-
-      },
-]
+const listHelper = require('../utils/list_helper')
 
 beforeEach(async () => {
   await Blog.deleteMany({})
@@ -46,16 +13,19 @@ beforeEach(async () => {
   await blogObject.save()
   blogObject = new Blog(helper.initialBlogs[1])
   await blogObject.save()
-  blogObject = new Blog(helper.initialBlogs[2])
-  await blogObject.save()
-  blogObject = new Blog(helper.initialBlogs[3])
-  await blogObject.save()
+})
+
+test('blogs are returned as json', async () => {
+  await api
+    .get('/blogs')
+    .expect(200)
+    .expect('Content-Type', /application\/json/)
 })
 
 test('there are two blogs', async () => {
     const response = await api.get('/blogs')
   
-    expect(response.body).toHaveLength(initialBlogs.length)
+    expect(response.body).toHaveLength(helper.initialBlogs.length)
 })
 
 test('all blogs are returned', async () => {
@@ -64,17 +34,17 @@ test('all blogs are returned', async () => {
   expect(response.body).toHaveLength(helper.initialBlogs.length)
 })
   
-  test('the third blog is written by BigBags', async () => {
+test('the second blog is written by "some bigger dude"', async () => {
     const response = await api.get('/blogs')
     console.log(response.body)
   
     const authors = response.body.map(r => r.author)
     expect(authors).toContain(
-    'Edsger'
+    'some bigger dude'
   )
   })
 
-  test('a valid blog can be added', async () => {
+test('a valid blog can be added', async () => {
     const newBlog = {
       title: 'async/await simplifies making async calls',
       author: 'french dude',
@@ -96,10 +66,10 @@ test('all blogs are returned', async () => {
     )
   })
 
-  test('note without author is not added', async () => {
-    const newBlog = {
+test('note without author is not added', async () => {
+    const newBlog = new Blog({
       title:"hello"
-    }
+    })
   
     await api
       .post('/blogs')
@@ -110,6 +80,55 @@ test('all blogs are returned', async () => {
   
     expect(blogsAtEnd).toHaveLength(helper.initialBlogs.length)
   })
+
+describe('find author with most published blogs', () => {
+    const blogs = [
+      {
+        _id: '4444',
+        title: 'Go To Statemt Considered Harmful',
+        author: 'donald duck',
+        url: 'http://www.u.ona.edu/~rubinson/copyright_violations/Go_To_Considered_Harmful.html',
+        likes: 5,
+        __v: 0,
+        blogs: 33
+      },
+      {
+        _id: '3333',
+        title: 'Go To StatemeCondered Harmful',
+        author: 'Edsger',
+        url: 'http://www.u.arizona.edu/~rubinson/copyright_violations/Go_To_Considered_Harmful.html',
+        likes: 2,
+        __v: 0,
+        blogs: 6
+
+      },
+      {
+        _id: '2222',
+        title: 'Go To Statement Considered Harmful',
+        author: 'Dijkstra',
+        url: 'http://www.u.arizona.edu/~rubinson/copyright_violations/Go_To_Considered_Harmful.html',
+        "likes": 25,
+        __v: 0,
+        blogs: 1
+
+      },
+      {
+        _id: '1111',
+        title: 'Go To Statement Conered Harmful',
+        author: ' W. ',
+        url: 'http://www.u.ari.edu/~rubinson/copyright_vlations/Go_To_Considered_Harmful.html',
+        likes: 22,
+        __v: 0,
+        blogs: 31
+
+      },
+    ]
+  
+  test('when list has more than one blog, find most published author', () => {
+      const result = listHelper.mostPublished(blogs)
+      expect(result).toEqual(blogs[0].author)
+})
+})
 
   afterAll(() => {
     mongoose.connection.close()
