@@ -3,13 +3,15 @@ POST http://localhost:3003/blogs
 Content-Type: application/json
 
 {
-    "title": "5",
-    "author": "json",
-    "url": "lukas.com",
-    "likes": 69
+    "title": "third blog 2.0",
+    "author": "by third",
+    "url": "third@url.com",
+    "likes": 69,
+    "userId": "6196953aa0fcbe354736159b"
 }
 
 ###
+
 PUT http://localhost:3003/blogs/619388805560ec1c7f0c52c5
 Content-Type: application/json
 

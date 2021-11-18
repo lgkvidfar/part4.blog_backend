@@ -3,6 +3,7 @@ const express = require('express')
 const app = express()
 const cors = require('cors')
 const blogsRouter = require('./controllers/blogs')
+const usersRouter = require('./controllers/users')
 const middleware = require('./utils/middleware')
 app.use(middleware.requestLogger)
 const logger = require('./utils/logger')
@@ -29,12 +30,9 @@ app.use(express.json())
 app.use(middleware.requestLogger)
 
 app.use('/blogs', blogsRouter)
-
+app.use('/users', usersRouter)
 
 app.use(middleware.unknownEndpoint)
 app.use(middleware.errorHandler)
-
-//or is it
-
 
 module.exports = app
