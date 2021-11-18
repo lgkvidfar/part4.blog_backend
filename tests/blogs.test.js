@@ -9,10 +9,11 @@ const listHelper = require('../utils/list_helper')
 
 beforeEach(async () => {
   await Blog.deleteMany({})
-  let blogObject = new Blog(helper.initialBlogs[0])
-  await blogObject.save()
-  blogObject = new Blog(helper.initialBlogs[1])
-  await blogObject.save()
+
+  for (let blog of helper.initialBlogs) {
+    let blogObject = new Blog(blog)
+    await blogObject.save()
+  }
 })
 
 test('blogs are returned as json', async () => {
@@ -66,7 +67,7 @@ test('a valid blog can be added', async () => {
     )
   })
 
-test('note without author is not added', async () => {
+test('blog without author is not added', async () => {
     const newBlog = new Blog({
       title:"hello"
     })
