@@ -1,13 +1,13 @@
 
-POST http://localhost:3003/blogs
-Content-Type: application/json
+POST http://localhost:3003/blogs 
+Content-Type: application/json 
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNlY29uZCIsImlkIjoiNjE5Nzc0OTk2NjgwNzgwZmQ1Y2UzMmZlIiwiaWF0IjoxNjM3MzI3MjYyfQ.m2Voa64smHsouK13pbxUCxL-o9sEjc1pE56shqnmWHk
 
 {
-    "title": "third blog 2.0",
-    "author": "by third",
-    "url": "third@url.com",
-    "likes": 69,
-    "userId": "6196953aa0fcbe354736159b"
+"title": "scond coming", 
+"author": "second",
+"url": "url.com",
+"likes": 10
 }
 
 ###
@@ -30,4 +30,4 @@ GET http://localhost:3003/blogs
 GET http://localhost:3003/blogs/6193886d5560ec1c7f0c52c2
 
 ###
-DELETE http://localhost:3003/blogs/61964dc2b20fa690878b557d
+DELETE http://localhost:3003/blogs/61979ecf5d5c12536240a930
